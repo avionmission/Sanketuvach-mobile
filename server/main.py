@@ -10,7 +10,7 @@ import pandas as pd
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 
-class SignLanguageRecognizer:
+class AlphabetsRecognizer:
     def __init__(self, model_path: str):
         self.mp_hands = mp.solutions.hands
         self.mp_drawing = mp.solutions.drawing_utils
@@ -101,14 +101,13 @@ class SignLanguageRecognizer:
         
         return prediction_result
 
-
-# Initialize recognizer (update the model path)
-recognizer = SignLanguageRecognizer(model_path='/home/avinash/Documents/Sanketuvach-mobile/server/models/model.h5')
+# Initialize alphabets recognizer
+recognizerAlpha = AlphabetsRecognizer(model_path='/home/avinash/Documents/Sanketuvach-mobile/server/models/model.h5')
 
 # Create Flask app
 app = Flask(__name__)
 
-@app.route("/predict", methods=["POST"])
+@app.route("/predictSymbol", methods=["POST"])
 def predict_sign():
     """Endpoint to predict sign language from an uploaded image"""
     try:
@@ -128,7 +127,7 @@ def predict_sign():
             return jsonify({"error": "Invalid image"}), 400
 
         language = request.form.get('language', 'English')
-        result = recognizer.process_frame(frame, language)
+        result = recognizerAlpha.process_frame(frame, language)
         return jsonify(result)
     
     except Exception as e:
@@ -137,7 +136,7 @@ def predict_sign():
 @app.route("/languages", methods=["GET"])
 def get_supported_languages():
     """Return list of supported languages"""
-    return jsonify(list(recognizer.translations.keys()))
+    return jsonify(list(recognizerAlpha.translations.keys()))
 
 
 if __name__ == "__main__":

@@ -28,3 +28,17 @@ npm install
 ```bash
 npx expo start
 ```
+
+## How to Contribute
+1. Fork the repo
+2. Clone the repo
+```bash
+git clone https://github.com/[yourusername]/Sanketuvach-mobile
+```
+3. Make changes and push in your forked repo
+```bash
+git add .
+git commit -m "Your Commit Message"
+git push
+```
+4. Make a pull request from github

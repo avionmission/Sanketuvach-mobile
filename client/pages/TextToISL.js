@@ -1,26 +1,23 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
+import { WebView } from 'react-native-webview';
+import Constants from 'expo-constants';
 const TextToISL = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Text to ISL Page</Text>
+      <WebView
+      style={{flex: 1,marginTop: 0}}
+      source={{ uri: 'http://192.168.1.4:5000' }}
+      scrollEnabled={false}
+    />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
-  },
+    flex: 1
+  }
 });
 
 export default TextToISL;

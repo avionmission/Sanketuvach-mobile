@@ -7,7 +7,7 @@ const TextToISL = () => {
     <View style={styles.container}>
       <WebView
       style={{flex: 1,marginTop: 0}}
-      source={{ uri: 'http://192.168.1.4:5000' }}
+      source={{ uri: 'http://192.168.1.6:5000/' }}
       scrollEnabled={false}
     />
     </View>

@@ -1,0 +1,7 @@
+/CoreNLP
+/corenlp_parser_test.py
+.DS_Store
+stanford-parser-full-2018-10-17/
+stanza_resources/
+venv
+stanford-parser-full-2018-10-17.jar

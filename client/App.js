@@ -11,6 +11,7 @@ import TextToISL from './pages/TextToISL';
 import VideoCall from './pages/VideoCall';
 import Account from './pages/Account';
 
+
 const Stack = createStackNavigator();
 
 const { width, height } = Dimensions.get('window'); // Get screen width

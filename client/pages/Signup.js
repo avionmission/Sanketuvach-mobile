@@ -1,45 +1,46 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, Alert } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
-import LottieView from 'lottie-react-native';
 
-import { Image } from 'expo-image';
-import { NavigationContainer } from '@react-navigation/native';
-
-const Account = ({ navigation,width }) => {
+const Signup = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    if (!email || !password) {
+  const handleSignup = () => {
+    if (!email || !password || !confirmPassword) {
       Alert.alert('Error', 'Please fill in all fields.');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match.');
       return;
     }
 
     setLoading(true);
 
-    // Simulate authentication process (replace this with API call)
+    // Simulate a signup process (replace this with API call)
     setTimeout(() => {
       setLoading(false);
-      if (email === 'test@example.com' && password === 'password123') {
-        Alert.alert('Success', 'Login Successful');
-        // Navigate to another screen, e.g., Home
-        navigation.navigate('HomeScreen');
-      } else {
-        Alert.alert('Error', 'Invalid credentials.');
-      }
-    }, 1000);
+      Alert.alert('Success', 'Account created successfully!');
+      // Navigate to login page after signup
+      navigation.navigate('LoginPage');
+    }, 1500);
   };
-  // const { width, height } = Dimensions.get('window'); 
+
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../assets/heading.png')}
-        style={{ width: width * 0.6, height: 100 }}
-        contentFit="contain"
+      <Text style={styles.title}>Sign Up</Text>
+      <TextInput
+        label="Name"
+        value={email}
+        onChangeText={setEmail}
+        mode="outlined"
+        style={styles.input}
+        keyboardType="email-address"
       />
-      <Text style={styles.title}>Login</Text>
       <TextInput
         label="Email"
         value={email}
@@ -56,28 +57,28 @@ const Account = ({ navigation,width }) => {
         style={styles.input}
         secureTextEntry
       />
+      <TextInput
+        label="Confirm Password"
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        mode="outlined"
+        style={styles.input}
+        secureTextEntry
+      />
       <Button
         mode="contained"
-        onPress={handleLogin}
+        onPress={handleSignup}
         loading={loading}
         style={styles.button}
       >
-        Login
+        Sign Up
       </Button>
       <Button
         mode="text"
-        onPress={() => navigation.navigate('SignupScreen')}
+        onPress={() => navigation.navigate('LoginPage')}
         style={styles.link}
       >
-        Don't have an account? Sign Up
-      </Button>
-      <Button
-        mode="contained"
-        onPress={()=>{navigation.navigate('Signup')}}
-        loading={loading}
-        style={styles.button}
-      >
-        SignUp
+        Already have an account? Log In
       </Button>
     </View>
   );
@@ -108,4 +109,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Account;
+export default Signup;

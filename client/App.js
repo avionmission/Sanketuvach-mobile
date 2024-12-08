@@ -10,6 +10,7 @@ import IslToText from './pages/IslToText';
 import TextToISL from './pages/TextToISL';
 import VideoCall from './pages/VideoCall';
 import Account from './pages/Account';
+import Signup from './pages/Signup';
 
 
 const Stack = createStackNavigator();
@@ -91,7 +92,8 @@ export default function App() {
         <Stack.Screen name="ISLAlpha" component={IslToAlpha} options={{ title: 'ISL to Text (Alpha)' }} />
         <Stack.Screen name="TextToISL" component={TextToISL} options={{ title: 'Text to ISL' }} />
         <Stack.Screen name="VideoCall" component={VideoCall} options={{ title: 'ISL Video Call' }} />
-        <Stack.Screen name="Account" component={Account} options={{ title: 'Account Page' }} />
+        <Stack.Screen name="Account" component={Account} options={{ title: 'Account Page' }} props = {width}/>
+        <Stack.Screen name="Signup" component={Signup} options={{ title: 'Signup Page' }} props = {width}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

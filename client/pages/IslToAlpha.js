@@ -206,12 +206,12 @@ const styles = StyleSheet.create({
   },
   predictionText: {
     color: 'white',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   translationText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 24,
   },
   processingText: {
     color: 'white',

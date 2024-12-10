@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import translations from '../assets/translations.json'
 import { StyleSheet, Text, View, Platform } from 'react-native';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Picker } from '@react-native-picker/picker';
@@ -14,12 +15,12 @@ export default function IslToAlpha() {
   const [prediction, setPrediction] = useState("");
   const [cache, setCache] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("en-In");
+  const [selectedLanguage, setSelectedLanguage] = useState("en-IN");
   const [isSpeakChecked, setSpeakChecked] = useState(false);
   const cameraRef = useRef(null);
 
   // Backend API base URL
-  const API_BASE_URL = 'http://192.168.0.102:8000';
+  const API_BASE_URL = 'http://192.168.110.53:8000';
 
   // Throttled prediction function to limit API calls
   const throttledPredictSign = useCallback(
@@ -161,11 +162,11 @@ export default function IslToAlpha() {
         {prediction ? (
           <View>
             <Text style={styles.predictionText} 
-                  onPress={(prediction.predicted_char != null && cache != prediction.predicted_char && isSpeakChecked) ? Speech.speak(`${prediction.translated_text}`) : {}}>
+                  onPress={(prediction.predicted_char != null && cache != prediction.predicted_char && isSpeakChecked) ? Speech.speak(`${prediction.translated_text}`, {language: selectedLanguage}) : {}}>
               Sign: {prediction.predicted_char}
             </Text>
             <Text style={styles.translationText}>
-              Translation: {prediction.translated_text}
+              Translation: {translations[selectedLanguage][prediction.predicted_char] || ""}
             </Text>
           </View>
         ) : (
@@ -176,6 +177,7 @@ export default function IslToAlpha() {
       </View>
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({

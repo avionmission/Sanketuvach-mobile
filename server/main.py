@@ -33,15 +33,7 @@ class AlphabetsRecognizer:
 
         self.alphabet = ['1','2','3','4','5','6','7','8','9'] + list(string.ascii_uppercase)
         self.translations = {
-            'English': {},
-            'Hindi': {},
-            'Marathi': {},
-            'Gujarati': {},
-            'Bengali': {},
-            'Tamil': {},
-            'Telugu': {},
-            'Kannada': {},
-            'Malayalam': {}
+            'English': {}
         }
 
         for char in self.alphabet:
